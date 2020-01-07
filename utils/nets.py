@@ -2,31 +2,6 @@ import torch
 import torch.nn as nn
 from torch.distributions import Normal
 
-class Base(nn.Module):
-    def __init__(self):
-        super().__init__()
-
-        self.main = nn.Sequential(
-            nn.Linear(1, 64),
-            nn.ReLU(),
-            nn.Linear(64, 64),
-            nn.ReLU(),
-            nn.Linear(64, 1)
-        )
-
-        self.optim = torch.optim.Adam(self.parameters(), lr=3e-4)
-
-    def forward(self, s):
-        return self.main(s)
-    
-    def optimize(self, s, a):
-        loss = ((self(s) - a) ** 2).mean()
-        self.optim.zero_grad()
-        loss.backward()
-        self.optim.step()
-
-        return loss.item()
-
 
 class F(nn.Module):
     def __init__(self, lr):

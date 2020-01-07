@@ -39,6 +39,9 @@ def norm(x):
 # training
 for epoch in range(int(num_epochs)):
 
+
+    ########################################
+
     # sample new states for training during this epoch
     s = sample_states(batch_size)
     s_normalized = s / max_req
@@ -47,6 +50,10 @@ for epoch in range(int(num_epochs)):
     for _ in range(f_epochs):
         x = D(s)
         x_gen = g(s_normalized)
+        
+        #! before WGAN-GP, I used weight clipping as proposed in the original WGAN paper
+        #! this didn't work well for me, but I kept it in here just in case
+        #! to avoid using the gradient penalty, uncomment this stuff and then comment out the lines from `x_inter = ...` to `grad_penalty = λ ...`
         
         # for p in f.parameters():
         #     p.data.clamp_(-clip, clip)
@@ -63,6 +70,11 @@ for epoch in range(int(num_epochs)):
     # minimize g
     g_loss = -f(g(s_normalized), s_normalized).mean()
     g.minimize(g_loss)
+
+    ########################################
+
+
+    
 
     # occasionally plot progress and example output
     if epoch % vis_iter == vis_iter - 1:

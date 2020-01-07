@@ -21,13 +21,21 @@ plot_data()
 # training
 for epoch in range(int(num_epochs)):
 
+
+    ########################################
+
     # sample new states and subsequent instance counts for training during this epoch
     s = sample_states(batch_size)
     y_hat = D(s)
 
-    # expectation maximization
+    # MSE minimization
     loss = ((f(s / max_req) - y_hat) ** 2).mean()                     #! states are normalized to prevent NaN's during log_prob calculation
     f.minimize(loss)
+
+    ########################################
+
+
+    
 
     # occasionally plot progress and example output
     if epoch % vis_iter == vis_iter - 1:

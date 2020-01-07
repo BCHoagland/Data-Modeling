@@ -8,12 +8,12 @@ max_req = 400
 
 def req_to_instances(req):
     # sqrt
-    mean = int(sqrt(req)) * 3
-    err = int(random() * 10 - 5)
+    # mean = int(sqrt(req)) * 3
+    # err = int(random() * 10 - 5)
 
     # fountain spray
-    # mean = -((req/20 - 10)**2) + 100
-    # err = int(random() * 10 - 5) * 10 * req / max_req
+    mean = -((req/20 - 10)**2) + 100
+    err = int(random() * 10 - 5) * 10 * req / max_req
     
     return max(mean + err, 0)
 

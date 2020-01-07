@@ -21,6 +21,9 @@ plot_data()
 # training
 for epoch in range(int(num_epochs)):
 
+
+    ########################################
+
     # sample new states and subsequent instance counts for training during this epoch
     s = sample_states(batch_size)
     y_hat = D(s)
@@ -28,6 +31,11 @@ for epoch in range(int(num_epochs)):
     # expectation maximization
     objective = π.log_prob(s / max_req, y_hat).mean()                               # states are normalized to prevent NaN's during log_prob calculation
     π.maximize(objective)
+
+    ########################################
+
+
+
 
     # occasionally plot progress and example output
     if epoch % vis_iter == vis_iter - 1:
