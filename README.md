@@ -45,4 +45,4 @@ Read the [Wasserstein GAN paper](https://arxiv.org/abs/1701.07875) and [WGAN wit
 
 
 ### Results
-There are some images in the `results` folder that show my visdom terminal after running each script on the "square root" data distribution. I got pretty similar results across trials, so you can use these as a baseline (my testing wasn't *that* extensive).
+There are some images in the `results` folder that show my visdom terminal after running each script on the "square root" data distribution. I got pretty similar results across trials, so you can use these as a baseline (my testing wasn't *that* extensive, though, so take my word with a grain of salt).
